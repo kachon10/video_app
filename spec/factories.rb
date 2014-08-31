@@ -6,4 +6,8 @@ FactoryGirl.define do
   factory :video do
     name "avatar"
   end
+
+  factory :ad do
+    name "ad"
+  end
 end

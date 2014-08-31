@@ -1,9 +1,8 @@
-class LikesController < ApplicationController
-
+class ClicksController < ApplicationController
   def index
     begin
-      video = Video.find(params[:video_id])
-      render :json => video.likes.to_a
+      ad = Ad.find(params[:ad_id])
+      render :json => ad.clicks.to_a
     rescue Exception => ex
       render :json => {
         :msg => ex.message
@@ -13,11 +12,11 @@ class LikesController < ApplicationController
 
   def create
     begin
-      user = User.find(params[:user])
-      video = Video.find(params[:video_id])
-      like = video.likes.create
-      like.liked_by = user
-      render :json => like
+      video = Video.find(params[:video])
+      ad = Ad.find(params[:ad_id])
+      click = ad.clicks.create
+      click.prerolled_by = video
+      render :json => click
     rescue Exception => ex
       render :json => {
         :msg => ex.message
@@ -27,9 +26,9 @@ class LikesController < ApplicationController
 
   def show
     begin
-      video = Video.find(params[:video_id])
-      like = video.likes.find(params[:id])
-      render :json => like
+      ad = Ad.find(params[:ad_id])
+      click = ad.clicks.find(params[:id])
+      render :json => click
     rescue Exception => ex
       render :json => {
         :msg => ex.message
@@ -39,9 +38,9 @@ class LikesController < ApplicationController
 
   def destroy
     begin
-      video = Video.find(params[:video_id])
-      like = video.likes.find(params[:id])
-      like.destroy
+      ad = Ad.find(params[:ad_id])
+      click = ad.clicks.find(params[:id])
+      click.destroy
       render :json => {}
     rescue Exception => ex
       render :json => {

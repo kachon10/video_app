@@ -18,7 +18,6 @@ describe UsersController do
     post :create, {:user => {:name => "tom3"} }
     expect(response.status).to eq(200)
     user = JSON.parse(response.body)
-    puts "user #{user}"
     expect(user["name"]).to eq("tom3")
 
     get :index

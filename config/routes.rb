@@ -6,6 +6,10 @@ VideoApp::Application.routes.draw do
     resources :likes, only: [:index, :show, :create, :destroy]
     resources :dislikes, only: [:index, :show, :create, :destroy]
   end
+
+  resources :ads, only: [:index, :show, :create, :destroy] do
+    resources :clicks, only: [:index, :show, :create, :destroy]
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

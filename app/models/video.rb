@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
   has_many :views, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :dislikes, dependent: :destroy
+  has_many :clicks, foreign_key: "prerolled_by_id"
   
   def as_json(options = {})
     ret = super

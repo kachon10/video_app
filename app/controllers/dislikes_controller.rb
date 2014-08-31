@@ -27,8 +27,8 @@ class DislikesController < ApplicationController
 
   def show
     begin
-      video = Video.find(params[:id])
-      dislike = video.dislikes.find(params[:video_id])
+      video = Video.find(params[:video_id])
+      dislike = video.dislikes.find(params[:id])
       render :json => dislike
     rescue Exception => ex
       render :json => {
@@ -39,8 +39,8 @@ class DislikesController < ApplicationController
 
   def destroy
     begin
-      video = Video.find(params[:id])
-      dislike = video.dislikes.find(params[:video_id])
+      video = Video.find(params[:video_id])
+      dislike = video.dislikes.find(params[:id])
       dislike.destroy
       render :json => {}
     rescue Exception => ex

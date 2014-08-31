@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831041240) do
+ActiveRecord::Schema.define(version: 20140831065603) do
 
   create_table "ads", force: true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140831041240) do
     t.string   "ad_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "prerolled_by_id"
   end
 
   create_table "dislikes", force: true do |t|
