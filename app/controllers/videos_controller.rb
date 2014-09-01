@@ -5,7 +5,10 @@ class VideosController < ApplicationController
   end
 
   def create
-    video = Video.create(:name => params[:video][:name])
+    user = User.find(params[:video][:user])
+    video = Video.create(
+              :name => params[:video][:name], 
+              :user => user)
     render :json => video
   end
 

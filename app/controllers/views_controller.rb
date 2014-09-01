@@ -15,8 +15,7 @@ class ViewsController < ApplicationController
     begin
       user = User.find(params[:user])
       video = Video.find(params[:video_id])
-      view = video.views.create
-      view.viewed_by = user
+      view = video.views.create(:viewed_by=>user)
       render :json => view
     rescue Exception => ex
       render :json => {

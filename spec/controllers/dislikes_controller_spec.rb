@@ -40,4 +40,14 @@ describe DislikesController do
 
   end
 
+  it "should not be able to create duplicate dislikes" do
+    user = FactoryGirl.create(:user)
+    video = FactoryGirl.create(:video)
+
+    post :create, :video_id => video.id, :user => user.id
+    expect(response.status).to eq(200)
+    post :create, :video_id => video.id, :user => user.id
+    expect(response.status).to eq(400)
+  end
+
 end

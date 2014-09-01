@@ -15,8 +15,12 @@ class LikesController < ApplicationController
     begin
       user = User.find(params[:user])
       video = Video.find(params[:video_id])
-      like = video.likes.create
-      like.liked_by = user
+      like = video.likes.find_by(:liked_by => user)
+      if like.nil?
+        like = video.likes.create(:liked_by => user)
+      else
+        raise "duplicate like"
+      end      
       render :json => like
     rescue Exception => ex
       render :json => {

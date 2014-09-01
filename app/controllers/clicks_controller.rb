@@ -14,8 +14,7 @@ class ClicksController < ApplicationController
     begin
       video = Video.find(params[:video])
       ad = Ad.find(params[:ad_id])
-      click = ad.clicks.create
-      click.prerolled_by = video
+      click = ad.clicks.create(:prerolled_by=>video)
       render :json => click
     rescue Exception => ex
       render :json => {

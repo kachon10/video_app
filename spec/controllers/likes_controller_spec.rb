@@ -37,7 +37,16 @@ describe LikesController do
     expect(response.status).to eq(200)
     likes = JSON.parse(response.body)
     expect(likes.count).to eq(0)
+  end
 
+  it "should not be able to create duplicate likes" do
+    user = FactoryGirl.create(:user)
+    video = FactoryGirl.create(:video)
+
+    post :create, :video_id => video.id, :user => user.id
+    expect(response.status).to eq(200)
+    post :create, :video_id => video.id, :user => user.id
+    expect(response.status).to eq(400)
   end
 
 end

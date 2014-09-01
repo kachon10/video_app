@@ -13,10 +13,15 @@ describe VideosController do
   end
 
   it "should be able to add/destroy video" do
-    
-    post :create, {:video => {:name => "300"} }
+    user = FactoryGirl.create(:user)
+    puts "user id #{user.id}"
+
+    data = {:video => {:name => "300", :user => user.id} }
+    puts "data #{data}"
+    post :create, data
     expect(response.status).to eq(200)
     video = JSON.parse(response.body)
+    puts "#{video}"
     expect(video["name"]).to eq("300")
 
     get :index

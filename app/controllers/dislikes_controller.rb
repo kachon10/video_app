@@ -15,8 +15,12 @@ class DislikesController < ApplicationController
     begin
       user = User.find(params[:user])
       video = Video.find(params[:video_id])
-      dislike = video.dislikes.create
-      dislike.disliked_by = user
+      dislike = video.dislikes.find_by(:disliked_by => user)
+      if dislike.nil?
+        dislike = video.dislikes.create(:disliked_by => user)
+      else
+        raise "duplicate dislikes"
+      end    
       render :json => dislike
     rescue Exception => ex
       render :json => {
