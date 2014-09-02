@@ -4,6 +4,8 @@ Model file:
 
 video.jpg
 
+Note:  Video/Ad object will contain like/dislike/view/click object with the corresponding count in their objects.  
+
 Instructions:
 
 1.  Install PostgreSQL server with configuration:
@@ -26,7 +28,7 @@ Unittest:
 
 Run server:
 
-1.  bundle exec rails s
+1.  bundle exec rails s  #(visit http://localhost:3000/ for the front page)
 
 Sample:
 
